@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiDiet - Food Upload</title>
+    <link rel="stylesheet" href="FoodUpload.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>DigiDiet</h1>
+        </header>
+
+        <main>
+            <section class="upload-section">
+                <h2>Food Upload</h2>
+                <p>Upload a photo of your meal for analysis</p>
+
+                <div class="image-preview" id="imagePreview">
+                    <span>No image selected</span>
+                    <img src="" alt="Image Preview" class="hidden">
+                </div>
+
+                <input type="file" id="fileInput" accept="image/*" hidden>
+                <div class="button-group">
+                    <button onclick="document.getElementById('fileInput').click()">Select Image</button>
+                    <button onclick="uploadImage()">Upload Image</button>
+                    <button onclick=""><a href="AnalyzeFood.html">AnalyzeFood</a></button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 DigiDiet | Smart Nutrition Solutions</p>
+        </footer>
+    </div>
+
+    <script src="FoodUpload.js"></script>
+</body>
+</html>
+
+
+
+
+
+

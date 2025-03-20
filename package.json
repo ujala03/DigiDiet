@@ -1,0 +1,19 @@
+{
+  "name": "digidiet-website",
+  "version": "1.0.0",
+  "main": "Analytics.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "aws-iot-device-sdk": "^2.2.15",
+    "body-parser": "^1.20.3",
+    "express": "^4.21.2",
+    "https": "^1.0.0"
+  }
+}

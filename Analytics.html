@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutritional Analytics</title>
+    <link rel="stylesheet" href="analytics.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Nutritional Analytics</h1>
+        <p>Your daily food intake summary</p>
+
+        <!-- Nutrient Cards -->
+        <div class="nutrient-cards">
+            <div class="card" id="caloriesCard">
+                <h3>Calories</h3>
+                <p><span id="caloriesValue">0</span> kcal</p>
+            </div>
+            <div class="card" id="proteinCard">
+                <h3>Protein</h3>
+                <p><span id="proteinValue">0</span> g</p>
+            </div>
+            <div class="card" id="fatsCard">
+                <h3>Fats</h3>
+                <p><span id="fatsValue">0</span> g</p>
+            </div>
+            <div class="card" id="fibresCard">
+                <h3>Fibres</h3>
+                <p><span id="fibresValue">0</span> g</p>
+            </div>
+            <div class="card" id="carbsCard">
+                <h3>Carbs</h3>
+                <p><span id="carbsValue">0</span> g</p>
+            </div>
+        </div>
+
+        <!-- Nutritional Chart -->
+        <canvas id="nutritionChart" width="400" height="200"></canvas>
+    </div>
+
+    <script src="analytics.js"></script>
+</body>
+</html>

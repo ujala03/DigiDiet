@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiDiet Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #data-container { margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center; }
+        .food-item {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .food-item img { width: 100%; border-radius: 10px; }
+        .food-item h3 { margin: 10px 0 5px; }
+        .food-item p { margin: 5px 0; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <h1>📊 DigiDiet Dashboard</h1>
+    <div id="data-container"></div>
+
+    <script>
+        const socket = new WebSocket("ws://localhost:8000/ws"); // Update to match your FastAPI WebSocket URL
+
+        socket.onopen = () => {
+            console.log("✅ Connected to WebSocket Server");
+        };
+
+        socket.onmessage = (event) => {
+            console.log("📩 Received from WebSocket:", event.data);
+            const data = JSON.parse(event.data);
+            const container = document.getElementById("data-container");
+
+            const foodDiv = document.createElement("div");
+            foodDiv.className = "food-item";
+            foodDiv.innerHTML = `
+                <img src="${data.image}" alt="${data.name}">
+                <h3>${data.name}</h3>
+                <p><strong>Protein:</strong> ${data.protein}g</p>
+                <p><strong>Carbohydrate:</strong> ${data.carbohydrate}g</p>
+                <p><strong>Fat:</strong> ${data.fat}g</p>
+            `;
+            
+            container.prepend(foodDiv);
+        };
+
+        socket.onerror = (error) => {
+            console.error("⚠ WebSocket Error:", error);
+        };
+
+        socket.onclose = () => {
+            console.log("🔌 WebSocket Disconnected");
+        };
+    </script>
+</body>
+</html>

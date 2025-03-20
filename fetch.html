@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiDiet Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        #data-container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background: #e1f5fe;
+            border-left: 5px solid #0288d1;
+            text-align: left;
+        }
+        a {
+            color: #0288d1;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📡 DigiDiet Live Dashboard</h1>
+    <div id="status">Connecting to WebSocket...</div>
+    <div id="data-container">
+        <h3>Real-time Image Links</h3>
+    </div>
+
+    <script>
+        const socket = new WebSocket("ws://localhost:5000/ws");
+
+        socket.onopen = () => {
+            document.getElementById("status").innerText = "✅ Connected to WebSocket Server";
+            document.getElementById("status").style.color = "green";
+        };
+
+        socket.onmessage = (event) => {
+            console.log("📩 Received from WebSocket:", event.data);
+            
+            const data = JSON.parse(event.data);
+            const container = document.getElementById("data-container");
+
+            const messageDiv = document.createElement("div");
+            messageDiv.className = "message";
+            messageDiv.innerHTML = `<strong>Image Link:</strong> <a href="${data.image_link}" target="_blank">${data.image_link}</a>`;
+            
+            container.prepend(messageDiv);
+        };
+
+        socket.onerror = (error) => {
+            console.error("⚠ WebSocket Error:", error);
+            document.getElementById("status").innerText = "⚠ WebSocket Error";
+            document.getElementById("status").style.color = "red";
+        };
+
+        socket.onclose = () => {
+            console.log("🔌 WebSocket Disconnected");
+            document.getElementById("status").innerText = "🔌 WebSocket Disconnected";
+            document.getElementById("status").style.color = "gray";
+        };
+    </script>
+
+</body>
+</html>

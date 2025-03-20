@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Digi Diet Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Digi Diet</h2>
+        <ul>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="FoodUpload.html">Upload Food Photo</a></li>
+            <li><a href="Analytics.html">Analytics</a></li>
+            <li><a href="fetch.html">fetch</a></li>
+            <li><a href="FoodLog.html">Food Log</a></li>
+            <li><a href="HealthAlerts.html">Health Alerts</a></li>
+            <li><a href="Logout.html">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1 id="welcomeMessage">Welcome!</h1> <!-- Dynamic placeholder -->
+
+        <section class="analytics">
+            <h3>Nutritional Analytics</h3>
+            <canvas id="nutritionChart" width="400" height="200"></canvas>
+        </section>
+
+        <section class="food-log">
+            <h3>Today's Food Log</h3>
+            <ul id="foodLogList">
+                <!-- Food entries go here -->
+            </ul>
+        </section>
+
+        <section class="health-alerts">
+            <h3>Health Tips & Alerts</h3>
+            <p>No current alerts.</p>
+        </section>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+<script>
+    //  Retrieve user name from localStorage
+    const userName = localStorage.getItem('userName');
+
+    //  Check and update welcome message
+    if (userName) {
+        document.getElementById('welcomeMessage').innerText = 'Welcome, ' + userName + '!';
+    } else {
+        //  Redirect back to profile page if name not found (optional for better flow)
+        alert('Please complete your profile first.');
+        window.location.href = 'profile.html'; // Make sure this matches your profile file name
+    }
+</script>
+<script>
+    //  Check if user is logged in
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const userName = localStorage.getItem('userName'); // If you also store name from profile page
+
+    if (!isLoggedIn) {
+        alert('Please login to access the dashboard.');
+        window.location.href = 'login.html'; // Redirect to login page
+    } else {
+        //  Show Welcome message
+        const welcomeMsg = userName ? 'Welcome, ' + userName + '!' : 'Welcome!';
+        document.getElementById('welcomeMessage').innerText = welcomeMsg;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logout</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #e3e3e3, #f7f7f7);
+    }
+
+    .logout-box {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .logout-box h2 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .logout-box p {
+      margin-bottom: 25px;
+      color: #555;
+      font-size: 15px;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .button-group button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .logout-btn {
+      background: #e74c3c;
+      color: white;
+    }
+
+    .logout-btn:hover {
+      background: #c0392b;
+    }
+
+    .cancel-btn {
+      background: #3498db;
+      color: white;
+    }
+
+    .cancel-btn:hover {
+      background: #2980b9;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .button-group {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logout-box">
+    <h2>Logout</h2>
+    <p>Are you sure you want to log out of your account?</p>
+
+    <div class="button-group">
+      <button class="logout-btn" onclick="logoutUser()">Logout</button>
+      <button class="cancel-btn" onclick="cancelLogout()">Cancel</button>
+    </div>
+  </div>
+
+  <script>
+    function logoutUser() {
+      // Simulated logout logic
+      alert("You have been successfully logged out.");
+      
+      // Redirect to login page or homepage
+      window.location.href = "index.html"; // Change URL as per your need
+    }
+
+    function cancelLogout() {
+      // Go back to previous page
+      window.history.back();
+    }
+  </script>
+
+</body>
+</html>
